@@ -14,8 +14,8 @@ body{
     align-items: center;
 }
 .game{
-    height: 60vmin;
-    width: 60vmin;
+    height: 90vmin;
+    width: 90vmin;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -23,8 +23,8 @@ body{
     gap: 1.5vmin;
 }
 .box{
-    height: 18vmin;
-    width: 18vmin;
+    height: 28vmin;
+    width: 28vmin;
     border-radius: 1rem;
     border: none;
     box-shadow: 0 0 1rem rgb(0, 0, 0,0.1);
@@ -32,6 +32,7 @@ body{
     font-weight: bolder;
     color: rgb(0, 0, 0);
     background-color: #ffffff;
+
 }
 .reset{
     padding: 1rem;
@@ -40,6 +41,11 @@ body{
     color: white;
     border-radius: 1rem;
     border: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    bottom: 20px;
+    position: relative;
+    width: 100px;
+
 }
 .new-btn{
     padding: 1rem;
@@ -48,17 +54,25 @@ body{
     color: white;
     border-radius: 1rem;
     border: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
 .msg{
     color: rgb(112, 3, 3);
     font-size: 5vmin;
+    font-weight: bolder;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .msg-container{
-    height: 30vmin;
+    height: 100vh;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    position: relative;
+    gap: 30px;
+    top:50%;
 
 }
 .hide{
@@ -66,4 +80,13 @@ body{
 }
 .new-btn{
     display: none;
+}
+h1{
+    color: rgb(112, 3, 3);
+    font-size: 10vmin;
+    font-weight: bolder;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    top: 20vmin;
+    
 }
