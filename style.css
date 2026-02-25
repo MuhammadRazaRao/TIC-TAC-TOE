@@ -2,9 +2,39 @@
     margin: 0;
     padding: 0;
 }
+.navbar{
+    height: 8vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding: 2px 20px 2px 2px;
+    background-color: seashell;
+    background-image: url("wood.jpg");
+}
+.logo{
+    margin-right: auto;
+    padding-left: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+}
+.icons{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+.navbar .home, .navbar .mode, .navbar .contact, .navbar .logo{
+    color: rgb(61, 28, 6);
+    font-size: 2rem;
+    cursor: pointer;
+}
 body{
     background-color: #000000;
     text-align: center;
+    background-image: url("wood2.jpg");
+
 
 }
 .container{
@@ -12,6 +42,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url("wood2.jpg");
+    transition: 0.2s ease;
 }
 .game{
     height: 90vmin;
@@ -21,6 +53,8 @@ body{
     justify-content: center;
     align-items: center;
     gap: 1.5vmin;
+    background-image: url("wood2.jpg");
+    background-size: cover;
 }
 .box{
     height: 28vmin;
@@ -28,37 +62,48 @@ body{
     border-radius: 1rem;
     border: none;
     box-shadow: 0 0 1rem rgb(0, 0, 0,0.1);
-    font-size: 8vmin;
+    font-size: 15vmin;
     font-weight: bolder;
-    color: rgb(0, 0, 0);
+    color: rgb(61, 28, 6);
     background-color: #ffffff;
+    background-image: url("wood.jpg");
+    background-size: cover;
+    box-shadow: 
+        0 8px 15px rgba(0,0,0,0.5),
+        0 4px 6px rgba(0,0,0,0.5);
+
+    transition: 0.2s ease;
 
 }
 .reset{
     padding: 1rem;
     font-size: 1.5rem;
-    background-color:rgb(112, 3, 3) ;
-    color: white;
+    background-color:rgb(255, 255, 255) ;
+    color: rgb(61, 28, 6);
     border-radius: 1rem;
     border: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    bottom: 20px;
+    font-weight: bolder;
+    bottom: 60px;
     position: relative;
     width: 100px;
+    background-image: url("wood.jpg");
 
 }
 .new-btn{
     padding: 1rem;
     font-size: 1.5rem;
     background-color:rgb(112, 3, 3) ;
-    color: white;
+    color: rgb(61, 28, 6);
+    font-weight: bolder;
     border-radius: 1rem;
     border: none;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url("wood.jpg");
 
 }
 .msg{
-    color: rgb(112, 3, 3);
+    color: rgb(179, 116, 74);
     font-size: 5vmin;
     font-weight: bolder;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -81,12 +126,38 @@ body{
 .new-btn{
     display: none;
 }
-h1{
-    color: rgb(112, 3, 3);
-    font-size: 10vmin;
-    font-weight: bolder;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    position: relative;
-    top: 20vmin;
-    
+
+@media (min-width: 600px) {
+
+    .container{
+        height: 80vh;
+    }
+
+    .game{
+        height: 450px;
+        width: 450px;
+        gap: 15px;
+    }
+
+    .box{
+        height: 130px;
+        width: 130px;
+        font-size: 80px;
+    }
+    .icons{
+    display: flex;
+    flex-direction: row;
+    gap: 90px;
+}
+
+    .reset{
+        margin-top: 2px;
+    }
+
+}
+.dark-mode body{
+    background-color: #000000;
+    text-align: center;
+    background-image: url("wood2.jpg");
+    transition: 0.2s ease;
 }

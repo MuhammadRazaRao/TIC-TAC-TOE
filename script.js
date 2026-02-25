@@ -3,6 +3,7 @@ let reset = document.querySelector(".reset");
 let newgamebtn = document.querySelector(".new-btn");
 let msgcontainer = document.querySelector(".msg-container");
 let msgpara = document.querySelector(".msg");
+let mode = document.querySelector(".mode");
 
 let turnO = true;
 
@@ -45,7 +46,17 @@ const enableboxes = () => {
 };
 
 const showwinner = (winner) => {
-    msgpara.innerText = `The winner is ${winner}`;
+    if(winner === "O"){
+        msgpara.innerText = "Player O Wins!";
+    }
+    else if(winner === "X"){
+        msgpara.innerText = "Player X Wins!";
+    }
+    else if(winner === "Draw"){
+        msgpara.innerText = "It's a Draw!";
+    }
+
+
     msgcontainer.classList.remove("hide");
     newgamebtn.style.display = "inline-block";
     disableboxes();
@@ -60,7 +71,20 @@ const checkwinner = () => {
         if(pos1 !== "" && pos1 === pos2 && pos2 === pos3){
             showwinner(pos1);
         }
+    
+    let draw = true;
+        for(let box of boxes){
+            if(box.innerText === ""){
+                draw = false;
+                break;
+
+        }
+        }
+        if(draw){
+            showwinner("Draw");
+        }
     }
+
 };
 
 const resetgame = () => {
@@ -70,5 +94,16 @@ const resetgame = () => {
     newgamebtn.style.display = "none";
 };
 
-newgamebtn.addEventListener("click", resetgame);
-reset.addEventListener("click", resetgame);
+mode.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    const icon = mode.querySelector("i"); // select the <i> inside .mode
+    if (document.body.classList.contains("dark-mode")) {
+        // Dark mode is active → show sun
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
+    } else {
+        // Light mode is active → show moon
+        icon.classList.remove("fa-sun");
+        icon.classList.add("fa-moon");
+    }
+});
