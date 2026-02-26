@@ -1,12 +1,17 @@
+// Select elements
 let boxes = document.querySelectorAll(".box");
 let reset = document.querySelector(".reset");
 let newgamebtn = document.querySelector(".new-btn");
 let msgcontainer = document.querySelector(".msg-container");
 let msgpara = document.querySelector(".msg");
-let mode = document.querySelector(".mode");
+
+let themeBtn = document.querySelector(".theme");
+let themeOptions = document.querySelector(".theme-options");
+let themecolors = document.querySelectorAll(".theme-option");
 
 let turnO = true;
 
+// Winning patterns
 const winpatterns = [
     [0,1,2],
     [3,4,5],
@@ -18,75 +23,84 @@ const winpatterns = [
     [2,4,6],
 ];
 
-boxes.forEach((box)=>{
-    box.addEventListener("click",()=>{
-        if(turnO){
+// Box click logic
+boxes.forEach((box) => {
+    box.addEventListener("click", () => {
+        if (turnO) {
             box.innerText = "O";
             turnO = false;
         } else {
             box.innerText = "X";
             turnO = true;
         }
+
         box.disabled = true;
         checkwinner();
     });
 });
 
+// Disable all boxes
 const disableboxes = () => {
-    for(let box of boxes){
+    boxes.forEach((box) => {
         box.disabled = true;
-    }
+    });
 };
 
+// Enable all boxes
 const enableboxes = () => {
-    for(let box of boxes){
+    boxes.forEach((box) => {
         box.disabled = false;
         box.innerText = "";
-    }
+    });
 };
 
+// Show winner
 const showwinner = (winner) => {
-    if(winner === "O"){
+    if (winner === "O") {
         msgpara.innerText = "Player O Wins!";
-    }
-    else if(winner === "X"){
+    } 
+    else if (winner === "X") {
         msgpara.innerText = "Player X Wins!";
-    }
-    else if(winner === "Draw"){
+    } 
+    else {
         msgpara.innerText = "It's a Draw!";
     }
-
 
     msgcontainer.classList.remove("hide");
     newgamebtn.style.display = "inline-block";
     disableboxes();
 };
 
+// Check winner
 const checkwinner = () => {
-    for(let pattern of winpatterns){
+
+    // Check winning patterns
+    for (let pattern of winpatterns) {
         let pos1 = boxes[pattern[0]].innerText;
         let pos2 = boxes[pattern[1]].innerText;
         let pos3 = boxes[pattern[2]].innerText;
 
-        if(pos1 !== "" && pos1 === pos2 && pos2 === pos3){
+        if (pos1 !== "" && pos1 === pos2 && pos2 === pos3) {
             showwinner(pos1);
-        }
-    
-    let draw = true;
-        for(let box of boxes){
-            if(box.innerText === ""){
-                draw = false;
-                break;
-
-        }
-        }
-        if(draw){
-            showwinner("Draw");
+            return; // Stop checking after winner found
         }
     }
 
+    // Check draw
+    let draw = true;
+    for (let box of boxes) {
+        if (box.innerText === "") {
+            draw = false;
+            break;
+        }
+    }
+
+    if (draw) {
+        showwinner("Draw");
+    }
 };
 
+// Reset game
 const resetgame = () => {
     turnO = true;
     enableboxes();
@@ -94,16 +108,27 @@ const resetgame = () => {
     newgamebtn.style.display = "none";
 };
 
-mode.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    const icon = mode.querySelector("i"); // select the <i> inside .mode
-    if (document.body.classList.contains("dark-mode")) {
-        // Dark mode is active → show sun
-        icon.classList.remove("fa-moon");
-        icon.classList.add("fa-sun");
-    } else {
-        // Light mode is active → show moon
-        icon.classList.remove("fa-sun");
-        icon.classList.add("fa-moon");
+reset.addEventListener("click", resetgame);
+newgamebtn.addEventListener("click", resetgame);
+
+// Theme toggle
+themeBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    themeOptions.classList.toggle("hide");
+});
+
+// Hide theme popup when clicking outside
+document.addEventListener("click", (e) => {
+    if (!themeBtn.contains(e.target) && !themeOptions.contains(e.target)) {
+        themeOptions.classList.add("hide");
     }
+});
+
+// Change theme
+themecolors.forEach((option) => {
+    option.addEventListener("click", () => {
+        document.body.className = "";
+        document.body.classList.add(option.dataset.theme);
+        themeOptions.classList.add("hide");
+    });
 });
