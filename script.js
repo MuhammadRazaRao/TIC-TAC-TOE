@@ -152,3 +152,14 @@ document.addEventListener("click", (e) => {
         contactBox.classList.add("hide");
     }
 });
+const welcomeContainer = document.querySelector(".welcome-container");
+const startBtn = document.querySelector(".start-btn");
+
+// Hide welcome message on clicking Start Game
+startBtn.addEventListener("click", () => {
+    welcomeContainer.style.display = "none";
+    enableboxes(); // enable the game boxes
+});
+
+// Initially, disable boxes until player starts
+boxes.forEach(box => box.disabled = true);
