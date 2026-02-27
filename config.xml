@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?>
 <widget id="TIC-TAC-TOE.myapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>TIC-TAC-TOE</name>
     <description>A simple TIC-TAC-TOE  made from HTML/CSS/JS</description>
@@ -8,4 +8,25 @@
     <preference name="android-windowNoTitle" value="true" />
     <preference name="android-hideTitleBar" value="true" />
     <preference name="Orientation" value="portrait" />
+</widget>
+<?xml version="1.0" encoding="UTF-8"?>
+<widget id="com.raza.tictactoe" version="1.0.0"
+xmlns="http://www.w3.org/ns/widgets" -->
+xmlns:gap="http://phonegap.com/ns/1.0">
+
+    <name>Tic Tac Toe</name>
+
+    <description>
+        A simple Tic Tac Toe made from HTML/CSS/JS
+    </description>
+
+    <author email="raomuhammadraza11@gmail.com">
+        M. Raza
+    </author>
+
+    <content src="index.html" />
+
+    <preference name="Fullscreen" value="true" />
+    <preference name="Orientation" value="portrait" />
+
 </widget>

@@ -329,10 +329,10 @@ body.power2 {
     background-position: center;
 }
 body.power2 .navbar {
-    background: linear-gradient(90deg, #00649a, #4597c1);
+    background: linear-gradient(90deg, rgb(65, 112, 129), #4597c1);
 }
 body.power2 .box {
-    background-color: rgba(87, 127, 255, 0.649);
+    background-color: rgba(65, 112, 129, 0.508);
     box-shadow: 0 8px 15px rgba(0,0,0,0.3);
     color:#00517c;
     transition: 0.3s ease;
@@ -340,7 +340,7 @@ body.power2 .box {
 }
 
 body.power2 .box:hover {
-    background: linear-gradient(90deg, #00649a, #4597c1);
+    background: linear-gradient(90deg, rgb(65, 112, 129), #4597c1);
     transform: scale(1.05);
 }
 body.power2 .reset {
