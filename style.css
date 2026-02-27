@@ -9,20 +9,22 @@
 /* Body */
 body {
     background: #111827;
+    background-image: url("paisa.jpg");
     color: white;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* ================= NAVBAR ================= */
+/* NAVBAR  */
 
 .navbar {
     display: flex;
     justify-content:flex-start;  /* Important */
     align-items: center;
     padding: 15px 10px 10px 10px;
-    background: #1f2937;
+    /* background: #42643a; */
+    background: linear-gradient(135deg, #385e30, #8fbc8f);
     box-shadow: 0 2px 10px rgba(0,0,0,0.4);
 }
 .logo {
@@ -43,6 +45,7 @@ body {
     font-size: 25px;
     cursor: pointer;
     width: 20%;
+    left: 0;
 }
 
 /* Theme Popup */
@@ -50,28 +53,49 @@ body {
     position: absolute;
     top: 35px;
     right: 0;
-    background: #ffffff;
+    background: rgb(255, 255, 255);
     padding: 15px;
     border-radius: 10px;
     width: 150px;
-    height: 300px;
+    height: 700px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    .p{
-        background: #be185d
-    }
-        .b{
-            background: #0284c7
+    
+        .p1{
+         background-image:url("p1.jpg");
+         background-size: cover;
         }
-        .w{
-            background: #047857;
-            background-image:url("wood2.jpg");
+        .p2{
+            background-image: url("p2.jpg");
+            background-size: cover;
         }
-        .d{
-            background: #000000
+        .p3{
+            
+            background-image:url("p3.jpg");
+            background-size: cover;
         }
+        .ch{
+            background-image: url("choze.jpg");
+             background-size: cover;
+        }
+        .ps{
+            background-image: url("paisa.jpg");
+             background-size: cover;
+        }
+        .st{
+            background-image: url("star.jpg");
+             background-size: cover;
+        }
+        .bil{
+            background-image: url("bilian.jpg");
+             background-size: cover;
+        }
+        .gl{
+            background-image: url("golo.jpg");
+             background-size: cover;
+         }
 }
 
 .theme-option {
@@ -81,15 +105,19 @@ body {
     text-align: center;
     font-size: 14px;
     transition: 0.3s;
-    height: 60px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.theme-option:hover {
-    background: #988f8f;
+/* .theme-option:hover {
+    background: ;
     color: #000000;
+} */
+.theme-option:click {
+    background: transparent;
+    border: 5px solid #000000;
 }
 
 .creator {
@@ -135,14 +163,17 @@ main {
     border-radius: 12px;
     border: none;
     cursor: pointer;
-    background: #1f2937;
-    color: white;
+    background:#2f522871 ;
+    color: #ffffff;
     transition: 0.3s ease;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid #5b8a50;
 }
 
 .box:hover {
-    /* background: #374151; */
+    /* background: #5b8a50; */
+    background: linear-gradient(135deg, #5b8a50, #8fbc8f);
+    color: white;
     transform: scale(1.05);
 }
 
@@ -156,11 +187,13 @@ main {
     font-size: 15px;
     background: #ffffff;
     color: rgb(5, 0, 0);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
     transition: 0.3s;
 }
 
 .reset:hover {
-    background: #dc2626;
+    color: white;
+    background: linear-gradient(135deg, #5b8a50, #8fbc8f);
 }
 
 /* ================= MESSAGE POPUP ================= */
@@ -170,7 +203,7 @@ main {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #1f2937;
+    background: #ffffff;
     padding: 30px;
     border-radius: 15px;
     text-align: center;
@@ -181,7 +214,8 @@ main {
 .msg {
     font-size: 22px;
     margin-bottom: 15px;
-    color: #facc15;
+    color: #000000;
+    font-weight:bolder ;
 }
 
 .new-btn {
@@ -189,7 +223,7 @@ main {
     border-radius: 8px;
     border: none;
     cursor: pointer;
-    background: #22c55e;
+    background: #195d08;
     color: white;
     transition: 0.3s;
 }
@@ -199,91 +233,221 @@ main {
 }
 
 /* ================= THEMES ================= */
+/* billian purple */
+body.bilian {
+    background-image: url("bilian.jpg");
+    background-size: cover;
+}
+body.bilian .navbar {
+    background: linear-gradient(90deg, #3a0553, #da58b1);
+}
+body.bilian .box {
+    background-color:#3a055399;
+    box-shadow: 0 8px 15px rgba(62, 42, 50, 0.5);
+    color: #ffffff; 
+    border: 3px solid #da58b1;
+    transition: 0.3s ease;
+}
+body.bilian .box:hover {
+    background: linear-gradient(90deg, #3a0553, #da58b1);
+    transform: scale(1.05);
+    transition: 0.3s ease;
+}
+body.bilian .reset {
+    background: white;
+    border: 1px solid #da58b1;
+    ;
+}
+body.bilian .reset:hover {
+    background: linear-gradient(90deg, #3a0553, #da58b1);
+    color: white;
+}
+/* power2 */
+body.power2 {
+    background-image: url("p2.jpg");
+    background-size: cover;
+    background-position: center;
+}
+body.power2 .navbar {
+    background: linear-gradient(90deg, #00649a, #4597c1);
+}
+body.power2 .box {
+    background-color: rgba(87, 127, 255, 0.649);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    color:#00517c;
+    transition: 0.3s ease;
+    border: 2px solid #4597c1;
+}
 
-/* Pink */
-body.pink {
-    background: #DA5552;
+body.power2 .box:hover {
+    background: linear-gradient(90deg, #00649a, #4597c1);
+    transform: scale(1.05);
 }
-body.pink .navbar {
-    background: #CC444B;
+body.power2 .reset {
+    background: white;
+    border: 1px solid #00517c;
+    color: #00517c;
 }
-body.pink .box {
-    background: #DF7373;
-    box-shadow: 10 10 10px rgba(62, 42, 50, 0.5);
-}
-body.pink .box:hover {
-    background: #CC444B;
-}
-
-/* Blue */
-body.blue {
-    background: #0c4a6e;
-}
-body.blue .navbar {
-    background: #075985;
-}
-body.blue .box {
-    background: #0284c7;
-}
-body.blue .box:hover {
+body.power2 .reset:hover {
     background: #0369a1;
+    color: white;
 }
-
-/* Green */
-body.wood {
-    background-image: url("wood2.jpg");
-    
+/* choze */
+body.choze {
+    background-image: url("choze.jpg");
+     background-size: cover; 
 }
-body.wood .navbar {
-    /* background: #065f46; */
-    background-image: url("wood.jpg");
-    
-    
-
+body.choze .navbar {
+     background: #f8ff1f; 
+     color: #000000;  
 }
-body.wood .box {
-    background: #047857;
-    color: #ffffff;
-    background-image: url("wood.jpg");
+body.choze .logo {
+    color: #000000;
 }
-body.wood .box:hover {
-    background: #49280f;
+body.choze .reset {
+    background: #ffffff;
+    border: 1px solid #000000;
+    color: #000000;
 }
-
-/* Purple */
-body.dark{
+body.choze .reset:hover {
     background: #000000;
+    color: #f8ff1f;
 }
-body.dark .navbar {
+body.choze .box {
+    background-color: #ffdc1682;
+    border: 3px solid #000000;
+    color: #000000; 
+}
+body.choze .box:hover {
+    background: #ffffff;
+    color:#ffdc16 ;
+}
+
+/* star*/
+body.star{
+    background-image: url("star.jpg");
+    /* background: #000000; */
+}
+body.star .navbar {
     background: #080808;
-    border-bottom: 2px solid #ff0062;
+    border-bottom: 2px solid #c51135;
     color: rgb(219, 212, 212);
     
 }
-body.dark .box {
+body.star .box {
     background: #000000;
-    color: rgb(255, 0, 98);
-    border: 2px solid #ff0062;
+    color: #c51135;
+    border: 2px solid #c51135;
     
 }
-body.dark .reset {
+body.star .reset {
     background: #151515;
-    border: 1px solid #ff0062;
+    border: 1px solid #c51135;
     color: white;
 }
-body.dark .reset:hover {
-    background: #ff0062;
+body.star .reset:hover {
+    background: #c51135;
     color: white;
 }
-body.dark .msg-container {
+body.star .msg-container {
     background: #080808;
-    border: 2px solid #ff0062;
+    border: 2px solid #c51135;
 }
-body.dark .theme-options {
+body.star .theme-options {
     background: #080808;
-    border: 2px solid #ff0062;
+    border: 2px solid #c51135;
     color: #ffffff;
 }
-body.dark .box:hover {
-    background: #ff5496;
+body.star .box:hover {
+    background: #c51135;
+}
+/* power2 */
+body.power1 {
+    background-image: url("p1.jpg");
+    background-size: cover;
+    background-position: center;
+}
+body.power1 .navbar {
+    background: linear-gradient(90deg, #b10303, #a43649);
+}
+body.power1 .box {
+    background-color: #b103038e;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    color:#ffffff;
+    transition: 0.3s ease;
+    border: 2px solid #a43649;
+}
+
+body.power1 .box:hover {
+    background: #a43648b7;
+    transform: scale(1.05);
+}
+body.power1 .reset {
+    background: white;
+    border: 1px solid #b10303;
+    color: #b10303;
+}
+body.power1 .reset:hover {
+    background: linear-gradient(90deg, #b10303, #a43649);
+    color: white;
+}
+/* power3 */
+body.power3 {
+    background-image: url("p3.jpg");
+    background-size: cover;
+    background-position: center;
+}
+body.power3 .navbar {
+    background: linear-gradient(90deg, #62a425, #a2c322);
+}
+body.power3 .box {
+    background-color: #62a42588;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    color:#ffffff;
+    transition: 0.3s ease;
+    border: 2px solid #a2c322;
+}
+
+body.power3 .box:hover {
+    background:#a3c322b7;
+    transform: scale(1.05);
+}
+body.power3 .reset {
+    background: white;
+    border: 1px solid #a2c322;
+    color: #000000;
+}
+body.power3 .reset:hover {
+    background: linear-gradient(90deg, #00649a, #4597c1);
+    color: white;
+}
+/* golo*/
+body.golo {
+    background-image: url("golo.jpg");
+    background-size: cover;
+    background-position: center;
+}
+body.golo .navbar {
+    background: linear-gradient(90deg, #ff76cf, #4c0b60);
+}
+body.golo .box {
+    background-color: #ff76cf88;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    color:#ffffff;
+    transition: 0.3s ease;
+    border: 2px solid #4c0b60;
+}
+
+body.golo .box:hover {
+    background:#4c0b60b7;
+    transform: scale(1.05);
+}
+body.golo .reset {
+    background: white;
+    border: 1px solid #4c0b60;
+    color: #000000;
+}
+body.golo .reset:hover {
+    background: linear-gradient(90deg, #ff76cf, #4c0b60);
+    color: white;
 }
