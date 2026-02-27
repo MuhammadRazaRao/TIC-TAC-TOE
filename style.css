@@ -41,11 +41,30 @@ body {
     width: 20%;
 }
 
-.contact {
+
+button.contact-btn {
     font-size: 25px;
     cursor: pointer;
     width: 20%;
-    left: 0;
+    background: none;
+    border: none;
+    color: white;
+}
+.contact-box {
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background: rgb(255, 255, 255);
+    padding: 15px;
+    border-radius: 10px;
+    width: 200px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    color: black;
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
 }
 
 /* Theme Popup */
@@ -301,6 +320,11 @@ body.choze .navbar {
      background: #f8ff1f; 
      color: #000000;  
 }
+body.choze .contact-btn {
+    background: #f8ff1f;
+    color: #000000;
+    
+}
 body.choze .logo {
     color: #000000;
 }
@@ -340,6 +364,10 @@ body.star .box {
     border: 2px solid #c51135;
     
 }
+body.star .box:hover {
+    background: #c51135;
+    color: rgb(0, 0, 0);
+}
 body.star .reset {
     background: #151515;
     border: 1px solid #c51135;
@@ -349,10 +377,7 @@ body.star .reset:hover {
     background: #c51135;
     color: white;
 }
-body.star .msg-container {
-    background: #080808;
-    border: 2px solid #c51135;
-}
+
 body.star .theme-options {
     background: #080808;
     border: 2px solid #c51135;

@@ -4,7 +4,8 @@ let reset = document.querySelector(".reset");
 let newgamebtn = document.querySelector(".new-btn");
 let msgcontainer = document.querySelector(".msg-container");
 let msgpara = document.querySelector(".msg");
-
+let contactBtn = document.querySelector(".contact-btn");   // button
+let contactBox = document.querySelector(".contact-box");   // popup
 let themeBtn = document.querySelector(".theme");
 let themeOptions = document.querySelector(".theme-options");
 let themecolors = document.querySelectorAll(".theme-option");
@@ -26,6 +27,8 @@ const winpatterns = [
 // Box click logic
 boxes.forEach((box) => {
     box.addEventListener("click", () => {
+        if (box.innerText !== "") return;
+
         if (turnO) {
             box.innerText = "O";
             turnO = false;
@@ -82,7 +85,7 @@ const checkwinner = () => {
 
         if (pos1 !== "" && pos1 === pos2 && pos2 === pos3) {
             showwinner(pos1);
-            return; // Stop checking after winner found
+            return;
         }
     }
 
@@ -111,17 +114,11 @@ const resetgame = () => {
 reset.addEventListener("click", resetgame);
 newgamebtn.addEventListener("click", resetgame);
 
-// Theme toggle
+// ================= THEME =================
+
 themeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     themeOptions.classList.toggle("hide");
-});
-
-// Hide theme popup when clicking outside
-document.addEventListener("click", (e) => {
-    if (!themeBtn.contains(e.target) && !themeOptions.contains(e.target)) {
-        themeOptions.classList.add("hide");
-    }
 });
 
 // Change theme
@@ -131,4 +128,27 @@ themecolors.forEach((option) => {
         document.body.classList.add(option.dataset.theme);
         themeOptions.classList.add("hide");
     });
+});
+
+// ================= CONTACT =================
+
+contactBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    contactBox.classList.toggle("hide");
+});
+
+// Close popups when clicking outside
+document.addEventListener("click", (e) => {
+
+    // Close theme
+    if (!themeBtn.contains(e.target) && 
+        !themeOptions.contains(e.target)) {
+        themeOptions.classList.add("hide");
+    }
+
+    // Close contact
+    if (!contactBtn.contains(e.target) && 
+        !contactBox.contains(e.target)) {
+        contactBox.classList.add("hide");
+    }
 });
