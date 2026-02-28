@@ -10,67 +10,97 @@
     />
     <title>tic tac toc</title>
 </head>
-<body >
-    <div class="welcome-container">
-    <div class="welcome-msg">
-        <h1>Welcome to Tic Tac Toe!</h1>
-        <p>Click "Start Game" to begin</p>
-        <button class="start-btn">Start Game</button>
+<body>
+  <!-- Loading Screen -->
+   <div class="loading-screen">
+    <div class="loader"></div>
+    <p>Loading Game...</p>
+   </div>
+<div class="welcome-container">
+
+  <!-- Welcome Box -->
+  <div class="welcome-msg">
+    <h1>Welcome to Tic Tac Toe!</h1>
+
+    <div class="mode-btn player-mode">Player vs Player</div>
+    <div class="mode-btn ai-mode">Play with AI</div>
+  </div>
+
+  <!-- Player vs Player Section (Hidden by default) -->
+  <div class="players-section hide">
+    <h2>Player vs Player</h2>
+
+    <div class="player-row">
+      <input type="text" placeholder="Player 1 Name" id="player1-name">
+      <div class="symbol x">X</div>
     </div>
+
+    <div class="player-row">
+      <input type="text" placeholder="Player 2 Name" id="player2-name">
+      <div class="symbol o">O</div>
+    </div>
+
+    <button class="start-btn">Start Game</button>
+    <button class="back-btn">Back</button>
+  </div>
+
 </div>
-    <div class="navbar">
-    <div class="logo">Tic Tac Toe</div>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    
+    <div class="logo">X&O</div>
+    <div class="home"><i class="fas fa-home"></i></div>
 
     <div class="theme">
-        <i class="fa-solid fa-palette"></i>
-
-        <div class="theme-options hide">
-            <div class="theme-option p1" data-theme="power1"></div>
-            <div class="theme-option p2" data-theme="power2"></div>
-            <div class="theme-option p3" data-theme="power3"></div>
-            <div class="theme-option ch" data-theme="choze"></div>
-            <div class="theme-option gl" data-theme="golo"></div>
-            <div class="theme-option bil" data-theme="bilian"></div>
-            <div class="theme-option ps" data-theme="paisa"></div>
-            <div class="theme-option st" data-theme="star"></div>
-            <p class="creator">Created by Raza</p>
-        </div>
+      <i class="fa-solid fa-palette"></i>
+      <div class="theme-options hide">
+        <div class="theme-option p1" data-theme="power1"></div>
+        <div class="theme-option p2" data-theme="power2"></div>
+        <div class="theme-option p3" data-theme="power3"></div>
+        <div class="theme-option ch" data-theme="choze"></div>
+        <div class="theme-option gl" data-theme="golo"></div>
+        <div class="theme-option bil" data-theme="bilian"></div>
+        <div class="theme-option dr" data-theme="dar"></div>
+        <div class="theme-option ps" data-theme="paisa"></div>
+        <div class="theme-option st" data-theme="star"></div>
+        <p class="creator">Created by Raza</p>
+      </div>
     </div>
 
-  
     <button class="contact-btn"><i class="fas fa-envelope"></i></button>
-<div class="contact-box hide">
-   <a href="messageto:03239885813">contact me on :   M.RAZA      03239885813</a>
-</div>
-
-</div>
-    <div class="msg-container hide">
-        <div class="msg">winner</div>
-        <button class="new-btn">New Game</button>
+    <div class="contact-box hide">
+      <div class="instagram"><a href="https://www.instagram.com/m.raza_rao?igsh=eWZtcWNtcXE1amVx" target="_main"><i class="fa-brands fa-instagram"></i>m.raza_rao</a></div>
+      <div class="whatsapp"><a href="https://wa.me/923239885813?text=Hello%20Raza" target="_main"><i class="fa-brands fa-whatsapp"></i>WhatsApp</a></div>
+      <p>Created by Raza</p>
     </div>
-    <main>
-        <div class="container">
-            <div class="game">
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-                <button class="box"></button>
-            </div>
-        </div>
-        <button class="reset">Reset</button>
-    </main>
-    
+  </div>
 
+  <!-- MESSAGE POPUP -->
+  <div class="msg-container hide">
+    <div class="msg">Winner</div>
+    <button class="new-btn">New Game</button>
+  </div>
 
+  <!-- GAME AREA -->
+  <main>
+    <div><p class="turn-indicator">Turn: Player 1 (O)</p></div>
+    <div class="container">
+      <div class="game">
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+        <button class="box"></button>
+      </div>
+    </div>
+    <button class="reset">Reset</button>
+  </main>
+  <canvas id="confetti"></canvas>
 
-
+  <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
-
-
-</html>

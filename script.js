@@ -1,165 +1,298 @@
-// Select elements
-let boxes = document.querySelectorAll(".box");
-let reset = document.querySelector(".reset");
-let newgamebtn = document.querySelector(".new-btn");
-let msgcontainer = document.querySelector(".msg-container");
-let msgpara = document.querySelector(".msg");
-let contactBtn = document.querySelector(".contact-btn");   // button
-let contactBox = document.querySelector(".contact-box");   // popup
-let themeBtn = document.querySelector(".theme");
-let themeOptions = document.querySelector(".theme-options");
-let themecolors = document.querySelectorAll(".theme-option");
+// ================= SELECT ELEMENTS =================
+const boxes = document.querySelectorAll(".box");
+const reset = document.querySelector(".reset");
+const newgamebtn = document.querySelector(".new-btn");
+const msgcontainer = document.querySelector(".msg-container");
+const msgpara = document.querySelector(".msg");
+const turnIndicator = document.querySelector(".turn-indicator");
 
-let turnO = true;
+const player1NameInput = document.getElementById("player1-name");
+const player2NameInput = document.getElementById("player2-name");
+const singlePlayerNameInput = document.getElementById("player-name");
 
-// Winning patterns
-const winpatterns = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-    [0,4,8],
-    [2,4,6],
-];
+const playerModeBtn = document.querySelector(".player-mode");
+const aiModeBtn = document.querySelector(".ai-mode");
+const welcomeBox = document.querySelector(".welcome-msg");
+const playersSection = document.querySelector(".players-section");
+const backBtn = document.querySelector(".back-btn");
+const startBtn = document.querySelector(".start-btn");
+const welcomeContainer = document.querySelector(".welcome-container");
 
-// Box click logic
-boxes.forEach((box) => {
-    box.addEventListener("click", () => {
-        if (box.innerText !== "") return;
-
-        if (turnO) {
-            box.innerText = "O";
-            turnO = false;
-        } else {
-            box.innerText = "X";
-            turnO = true;
-        }
-
-        box.disabled = true;
-        checkwinner();
-    });
-});
-
-// Disable all boxes
-const disableboxes = () => {
-    boxes.forEach((box) => {
-        box.disabled = true;
-    });
-};
-
-// Enable all boxes
-const enableboxes = () => {
-    boxes.forEach((box) => {
-        box.disabled = false;
-        box.innerText = "";
-    });
-};
-
-// Show winner
-const showwinner = (winner) => {
-    if (winner === "O") {
-        msgpara.innerText = "Player O Wins!";
-    } 
-    else if (winner === "X") {
-        msgpara.innerText = "Player X Wins!";
-    } 
-    else {
-        msgpara.innerText = "It's a Draw!";
-    }
-
-    msgcontainer.classList.remove("hide");
-    newgamebtn.style.display = "inline-block";
-    disableboxes();
-};
-
-// Check winner
-const checkwinner = () => {
-
-    // Check winning patterns
-    for (let pattern of winpatterns) {
-        let pos1 = boxes[pattern[0]].innerText;
-        let pos2 = boxes[pattern[1]].innerText;
-        let pos3 = boxes[pattern[2]].innerText;
-
-        if (pos1 !== "" && pos1 === pos2 && pos2 === pos3) {
-            showwinner(pos1);
-            return;
-        }
-    }
-
-    // Check draw
-    let draw = true;
-    for (let box of boxes) {
-        if (box.innerText === "") {
-            draw = false;
-            break;
-        }
-    }
-
-    if (draw) {
-        showwinner("Draw");
-    }
-};
-
-// Reset game
-const resetgame = () => {
-    turnO = true;
-    enableboxes();
-    msgcontainer.classList.add("hide");
-    newgamebtn.style.display = "none";
-};
-
-reset.addEventListener("click", resetgame);
-newgamebtn.addEventListener("click", resetgame);
-
+const homeBtn = document.querySelector(".home");
 // ================= THEME =================
+const themeBtn = document.querySelector(".theme");
+const themeOptions = document.querySelector(".theme-options");
+const themecolors = document.querySelectorAll(".theme-option");
 
-themeBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    themeOptions.classList.toggle("hide");
+themeBtn?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  themeOptions?.classList.toggle("hide");
 });
 
-// Change theme
-themecolors.forEach((option) => {
-    option.addEventListener("click", () => {
-        document.body.className = "";
-        document.body.classList.add(option.dataset.theme);
-        themeOptions.classList.add("hide");
-    });
+themecolors.forEach(option => {
+  option.addEventListener("click", () => {
+    document.body.className = option.dataset.theme;
+    themeOptions?.classList.add("hide");
+  });
 });
 
 // ================= CONTACT =================
+const contactBtn = document.querySelector(".contact-btn");
+const contactBox = document.querySelector(".contact-box");
 
-contactBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    contactBox.classList.toggle("hide");
+contactBtn?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  contactBox?.classList.toggle("hide");
 });
 
-// Close popups when clicking outside
+// ================= OUTSIDE CLICK CLOSE =================
 document.addEventListener("click", (e) => {
-
-    // Close theme
-    if (!themeBtn.contains(e.target) && 
-        !themeOptions.contains(e.target)) {
-        themeOptions.classList.add("hide");
+  if(themeBtn && themeOptions){
+    if(!themeBtn.contains(e.target) && !themeOptions.contains(e.target)){
+      themeOptions.classList.add("hide");
     }
+  }
 
-    // Close contact
-    if (!contactBtn.contains(e.target) && 
-        !contactBox.contains(e.target)) {
-        contactBox.classList.add("hide");
+  if(contactBtn && contactBox){
+    if(!contactBtn.contains(e.target) && !contactBox.contains(e.target)){
+      contactBox.classList.add("hide");
     }
-});
-const welcomeContainer = document.querySelector(".welcome-container");
-const startBtn = document.querySelector(".start-btn");
-
-// Hide welcome message on clicking Start Game
-startBtn.addEventListener("click", () => {
-    welcomeContainer.style.display = "none";
-    enableboxes(); // enable the game boxes
+  }
 });
 
-// Initially, disable boxes until player starts
-boxes.forEach(box => box.disabled = true);
+// ================= GAME STATE =================
+let turnO = false; 
+let player1Name = "Player X";
+let player2Name = "Player O";
+let isSinglePlayer = false;
+
+// ================= WIN PATTERNS =================
+const winpatterns = [
+  [0,1,2],[3,4,5],[6,7,8],
+  [0,3,6],[1,4,7],[2,5,8],
+  [0,4,8],[2,4,6],
+];
+
+// ================= ENABLE / DISABLE =================
+const enableboxes = () => {
+  boxes.forEach(box => {
+    box.disabled = false;
+    box.innerText = "";
+    box.classList.remove("win");
+  });
+};
+
+const disableboxes = () => {
+  boxes.forEach(box => box.disabled = true);
+};
+
+// ================= SHOW WINNER =================
+function showwinner(winner){
+  if(winner === "X"){
+    msgpara.innerText = `${player1Name} Wins!`;
+  } 
+  else if(winner === "O"){
+    msgpara.innerText = `${player2Name} Wins!`;
+  } 
+  else {
+    msgpara.innerText = "It's a Draw!";
+  }
+
+  msgcontainer.classList.remove("hide");
+  turnIndicator.innerText = msgpara.innerText;
+  disableboxes();
+}
+
+// ================= CHECK WINNER =================
+function checkwinner(){
+  for(let pattern of winpatterns){
+    let [a,b,c] = pattern;
+
+    if(
+      boxes[a].innerText !== "" &&
+      boxes[a].innerText === boxes[b].innerText &&
+      boxes[b].innerText === boxes[c].innerText
+    ){
+      boxes[a].classList.add("win");
+      boxes[b].classList.add("win");
+      boxes[c].classList.add("win");
+
+      showwinner(boxes[a].innerText);
+      return true;
+    }
+  }
+
+  // Draw check
+  let isDraw = [...boxes].every(box => box.innerText !== "");
+  if(isDraw){
+    showwinner("draw");
+    return true;
+  }
+
+  return false;
+}
+
+// ================= RESET =================
+function resetgame(){
+  turnO = false;
+  enableboxes();
+  msgcontainer.classList.add("hide");
+  updateTurnIndicator();
+}
+
+reset?.addEventListener("click", resetgame);
+newgamebtn?.addEventListener("click", resetgame);
+
+// ================= MODE SWITCH =================
+playerModeBtn?.addEventListener("click", () => {
+  welcomeBox.classList.add("hide");
+  playersSection.classList.remove("hide");
+});
+
+backBtn?.addEventListener("click", () => {
+  playersSection.classList.add("hide");
+  welcomeBox.classList.remove("hide");
+});
+
+aiModeBtn?.addEventListener("click", () => {
+  isSinglePlayer = true;
+  player1Name = "Player";
+  player2Name = "AI Bot";
+
+  welcomeContainer.style.display = "none";
+  enableboxes();
+  updateTurnIndicator();
+});
+
+// ================= START BUTTON =================
+startBtn?.addEventListener("click", () => {
+
+  if(singlePlayerNameInput && singlePlayerNameInput.value.trim() !== ""){
+    isSinglePlayer = true;
+    player1Name = singlePlayerNameInput.value.trim();
+    player2Name = "AI Bot";
+  } 
+  else {
+    isSinglePlayer = false;
+    player1Name = player1NameInput?.value.trim() || "Player X";
+    player2Name = player2NameInput?.value.trim() || "Player O";
+  }
+
+  welcomeContainer.style.display = "none";
+  enableboxes();
+  turnO = false;
+  updateTurnIndicator();
+});
+
+// ================= PLAYER CLICK =================
+boxes.forEach(box => {
+  box.addEventListener("click", () => {
+
+    if(box.innerText !== "") return;
+
+    if(!isSinglePlayer){
+      box.innerText = turnO ? "O" : "X";
+      box.disabled = true;
+
+      if(checkwinner()) return;
+
+      turnO = !turnO;
+      updateTurnIndicator();
+    }
+    else {
+      if(turnO) return;
+
+      box.innerText = "X";
+      box.disabled = true;
+
+      if(checkwinner()) return;
+
+      turnO = true;
+      updateTurnIndicator();
+
+      setTimeout(() => {
+        aiMove();
+      }, 400);
+    }
+  });
+});
+
+// ================= AI MOVE =================
+function aiMove(){
+  if(!turnO) return;
+
+  // Try win
+  for(let pattern of winpatterns){
+    let values = pattern.map(i => boxes[i].innerText);
+    if(values.filter(v => v === "O").length === 2 && values.includes("")){
+      let index = pattern[values.indexOf("")];
+      boxes[index].innerText = "O";
+      boxes[index].disabled = true;
+      checkwinner();
+      turnO = false;
+      updateTurnIndicator();
+      return;
+    }
+  }
+
+  // Block
+  for(let pattern of winpatterns){
+    let values = pattern.map(i => boxes[i].innerText);
+    if(values.filter(v => v === "X").length === 2 && values.includes("")){
+      let index = pattern[values.indexOf("")];
+      boxes[index].innerText = "O";
+      boxes[index].disabled = true;
+      checkwinner();
+      turnO = false;
+      updateTurnIndicator();
+      return;
+    }
+  }
+
+  // Center
+  if(boxes[4].innerText === ""){
+    boxes[4].innerText = "O";
+    boxes[4].disabled = true;
+  }
+  else {
+    let empty = [...boxes].filter(box => box.innerText === "");
+    let random = empty[Math.floor(Math.random() * empty.length)];
+    random.innerText = "O";
+    random.disabled = true;
+  }
+
+  checkwinner();
+  turnO = false;
+  updateTurnIndicator();
+}
+
+// ================= TURN INDICATOR =================
+function updateTurnIndicator(){
+  if(isSinglePlayer){
+    turnIndicator.innerText = turnO 
+      ? "Turn: AI (O)" 
+      : `Turn: ${player1Name} (X)`;
+  } 
+  else {
+    turnIndicator.innerText = turnO 
+      ? `Turn: ${player2Name} (O)` 
+      : `Turn: ${player1Name} (X)`;
+  }
+}
+
+// ================= HOME =================
+homeBtn?.addEventListener("click", () => {
+  welcomeContainer.style.display = "flex";
+  resetgame();
+});
+
+// ================= LOADING SCREEN =================
+window.addEventListener("load", () => {
+  const loader = document.querySelector(".loading-screen");
+
+  setTimeout(() => {
+    if(loader) loader.style.display = "none";
+    if(welcomeContainer) welcomeContainer.style.display = "flex";
+    disableboxes();
+  }, 2000);
+});
