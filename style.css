@@ -193,7 +193,8 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
 
-    margin: 10px;
+    margin-left: auto;                 
+    margin-right: auto;
     max-width: 400px;
     width: 80%;
 
@@ -416,7 +417,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 120px;
+    margin-top: 50px;
 }
 
 .container {
@@ -581,11 +582,11 @@ body.choze i{color: #000;}
 body.choze .reset { background:#ffffff; border:1px solid #000000; color:#000; }
 body.choze .reset:hover { background:#f8ff1f; color:#000; }
 body.choze .players-section{background:transparent ;border: 1px solid #000000;}
-body.choze .mode-btn{background: linear-gradient(90deg, #f8ff1f, #a83131);}
+body.choze .mode-btn{background: linear-gradient(90deg, #f8ff1f, #a83131);color: #000;}
 body.choze .mode-btn:hover{background:white; color:#000000; border-inline: 0.1px solid #000000;}
 body.choze .new-btn{background:#f8ff1f; color:#a83131;}
 body.choze .win{background: linear-gradient(90deg, #f8ff1f, #a83131);}
-body.choze .welcome-msg{background: transparent;border:1px solid #000000;}
+body.choze .welcome-msg{background: transparent;border:1px solid #000000;color: #000;}
 body.choze .navbar-buttons{background:#f8ff1f ;border:1px solid #000000;}
 body.choze .theme-options{border:1px solid #000000;background: transparent;border:1px solid #000000;}
 body.choze .contact-box{background: #f8ff1f;color: rgb(0, 0, 0);}
