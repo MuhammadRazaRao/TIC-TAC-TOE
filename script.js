@@ -1,4 +1,4 @@
-// ================= SELECT ELEMENTS =================
+//  SELECT ELEMENTS 
 const boxes = document.querySelectorAll(".box");
 const reset = document.querySelector(".reset");
 const newgamebtn = document.querySelector(".new-btn");
@@ -19,61 +19,101 @@ const startBtn = document.querySelector(".start-btn");
 const welcomeContainer = document.querySelector(".welcome-container");
 
 const homeBtn = document.querySelector(".home");
-// ================= THEME =================
+
+//  THEME 
 const themeBtn = document.querySelector(".theme");
 const themeOptions = document.querySelector(".theme-options");
 const themecolors = document.querySelectorAll(".theme-option");
+const themeCloseBtn = document.querySelector(".theme-close");
 
+// Load saved theme from localStorage or default
+let savedTheme = localStorage.getItem("selectedTheme") || "paisa";
+document.body.className = savedTheme;
+
+// Open theme popup
 themeBtn?.addEventListener("click", (e) => {
   e.stopPropagation();
   themeOptions?.classList.toggle("hide");
 });
 
+// Close theme popup with cross button
+themeCloseBtn?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  themeOptions.classList.add("hide");
+});
+
+// Theme preview on hover + select on click
 themecolors.forEach(option => {
+  option.addEventListener("mouseenter", () => {
+    document.body.className = option.dataset.theme; // preview on hover
+  });
+  option.addEventListener("mouseleave", () => {
+    document.body.className = savedTheme; // revert when hover leaves
+  });
   option.addEventListener("click", () => {
-    document.body.className = option.dataset.theme;
-    themeOptions?.classList.add("hide");
+    savedTheme = option.dataset.theme;
+    document.body.className = savedTheme;
+    localStorage.setItem("selectedTheme", savedTheme);
+    themeOptions.classList.add("hide");
+    themecolors.forEach(opt => opt.classList.remove("selected"));
+    option.classList.add("selected");
   });
 });
 
-// ================= CONTACT =================
+// Stop clicks inside theme popup from closing it
+themeOptions?.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+///  CONTACT 
 const contactBtn = document.querySelector(".contact-btn");
 const contactBox = document.querySelector(".contact-box");
+const contactCloseBtn = document.querySelector(".contact-close"); // your cross button
 
+// Open contact popup
 contactBtn?.addEventListener("click", (e) => {
   e.stopPropagation();
   contactBox?.classList.toggle("hide");
 });
 
-// ================= OUTSIDE CLICK CLOSE =================
-document.addEventListener("click", (e) => {
-  if(themeBtn && themeOptions){
-    if(!themeBtn.contains(e.target) && !themeOptions.contains(e.target)){
-      themeOptions.classList.add("hide");
-    }
+// Stop clicks inside contact popup from closing it
+contactBox?.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+// Close contact popup when clicking the cross button
+contactCloseBtn?.addEventListener("click", (e) => {
+  e.stopPropagation(); // prevent document click from firing
+  contactBox.classList.add("hide");
+});
+
+// Close contact and theme popup when clicking outside
+document.addEventListener("click", () => {
+  // Close theme popup if open
+  if(themeOptions && !themeOptions.classList.contains("hide")) {
+    themeOptions.classList.add("hide");
   }
 
-  if(contactBtn && contactBox){
-    if(!contactBtn.contains(e.target) && !contactBox.contains(e.target)){
-      contactBox.classList.add("hide");
-    }
+  // Close contact popup if open
+  if(contactBox && !contactBox.classList.contains("hide")) {
+    contactBox.classList.add("hide");
   }
 });
 
-// ================= GAME STATE =================
+// GAME STATE 
 let turnO = false; 
 let player1Name = "Player X";
 let player2Name = "Player O";
 let isSinglePlayer = false;
 
-// ================= WIN PATTERNS =================
+// WIN PATTERNS 
 const winpatterns = [
   [0,1,2],[3,4,5],[6,7,8],
   [0,3,6],[1,4,7],[2,5,8],
   [0,4,8],[2,4,6],
 ];
 
-// ================= ENABLE / DISABLE =================
+// ENABLE / DISABLE 
 const enableboxes = () => {
   boxes.forEach(box => {
     box.disabled = false;
@@ -86,7 +126,7 @@ const disableboxes = () => {
   boxes.forEach(box => box.disabled = true);
 };
 
-// ================= SHOW WINNER =================
+//  SHOW WINNER 
 function showwinner(winner){
   if(winner === "X"){
     msgpara.innerText = `${player1Name} Wins!`;
@@ -103,7 +143,7 @@ function showwinner(winner){
   disableboxes();
 }
 
-// ================= CHECK WINNER =================
+//  CHECK WINNER 
 function checkwinner(){
   for(let pattern of winpatterns){
     let [a,b,c] = pattern;
@@ -132,7 +172,7 @@ function checkwinner(){
   return false;
 }
 
-// ================= RESET =================
+//  RESET 
 function resetgame(){
   turnO = false;
   enableboxes();
@@ -143,7 +183,7 @@ function resetgame(){
 reset?.addEventListener("click", resetgame);
 newgamebtn?.addEventListener("click", resetgame);
 
-// ================= MODE SWITCH =================
+// MODE SWITCH 
 playerModeBtn?.addEventListener("click", () => {
   welcomeBox.classList.add("hide");
   playersSection.classList.remove("hide");
@@ -164,7 +204,7 @@ aiModeBtn?.addEventListener("click", () => {
   updateTurnIndicator();
 });
 
-// ================= START BUTTON =================
+//  START BUTTon
 startBtn?.addEventListener("click", () => {
 
   if(singlePlayerNameInput && singlePlayerNameInput.value.trim() !== ""){
@@ -184,7 +224,7 @@ startBtn?.addEventListener("click", () => {
   updateTurnIndicator();
 });
 
-// ================= PLAYER CLICK =================
+//  PLAYER CLICK 
 boxes.forEach(box => {
   box.addEventListener("click", () => {
 
@@ -217,7 +257,7 @@ boxes.forEach(box => {
   });
 });
 
-// ================= AI MOVE =================
+//  AI MOVE 
 function aiMove(){
   if(!turnO) return;
 
@@ -266,7 +306,7 @@ function aiMove(){
   updateTurnIndicator();
 }
 
-// ================= TURN INDICATOR =================
+//  TURN INDICATOR 
 function updateTurnIndicator(){
   if(isSinglePlayer){
     turnIndicator.innerText = turnO 
@@ -280,13 +320,13 @@ function updateTurnIndicator(){
   }
 }
 
-// ================= HOME =================
+//  HOME 
 homeBtn?.addEventListener("click", () => {
   welcomeContainer.style.display = "flex";
   resetgame();
 });
 
-// ================= LOADING SCREEN =================
+// LOADING SCREEN 
 window.addEventListener("load", () => {
   const loader = document.querySelector(".loading-screen");
 
