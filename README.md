@@ -96,9 +96,7 @@ TIC-TAC-TOE/
 └── README.md
 ```
 
-## Live Demo
 
-[Play X&O — Tic Tac Toe](https://muhammadrazarao.github.io/TIC-TAC-TOE/)
 
 ## Future Enhancements
 
